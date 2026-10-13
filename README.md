@@ -43,7 +43,26 @@ Imágenes: carpeta [`public/images/`](public/images/) (crear al sumar fotos).
 
 ## Deploy
 
-Compatible con Vercel: configurá las mismas env vars en el proyecto y `npm run build`.
+### Cloudflare Pages (recomendado para este repo)
+
+El sitio se exporta como HTML estático (`output: "export"`) para evitar el error **1101 Worker threw exception** del runtime Next en Workers.
+
+En **Workers & Pages → tu proyecto → Settings → Builds**:
+
+| Campo | Valor |
+|--------|--------|
+| Framework preset | **None** |
+| Build command | `npm run build` |
+| Build output directory | **`out`** |
+| Node.js version | **20** o **22** |
+
+Variables de entorno (Production): `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_WHATSAPP_NUMBER`.
+
+Redirect `/mayorista` → `/proveeduria`: [`public/_redirects`](public/_redirects).
+
+### Vercel
+
+Quitar `output: "export"` en [`next.config.ts`](next.config.ts) si necesitás SSR; configurá las mismas env vars y `npm run build`.
 
 ## Scripts
 

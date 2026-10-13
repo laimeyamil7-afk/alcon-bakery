@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [{ source: "/mayorista", destination: "/proveeduria", permanent: true }];
+  /** Sitio 100 % estático — compatible con Cloudflare Pages (sin Worker Next) */
+  output: "export",
+  images: {
+    unoptimized: true,
   },
-  cacheComponents: true,
-  partialPrefetching: true,
   turbopack: {
     rules: {
       "*.css": {
