@@ -1,0 +1,39 @@
+# Deploy estático a Cloudflare Pages (carpeta out/).
+# Secrets en GitHub: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID
+# Ver docs/DEPLOY-CLOUDFLARE.md
+
+name: Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".node-version"
+          cache: npm
+
+      - name: Install and build
+        run: npm ci && npm run build
+        env:
+          NEXT_PUBLIC_WHATSAPP_NUMBER: "541122536506"
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://alcon-bakery.pages.dev' }}
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: alcon-bakery
+          directory: out
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

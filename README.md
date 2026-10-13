@@ -45,20 +45,11 @@ Imágenes: carpeta [`public/images/`](public/images/) (crear al sumar fotos).
 
 ### Cloudflare Pages (recomendado para este repo)
 
-El sitio se exporta como HTML estático (`output: "export"`) para evitar el error **1101 Worker threw exception** del runtime Next en Workers.
+Export estático → carpeta **`out/`** (ver [`wrangler.jsonc`](wrangler.jsonc)).
 
-En **Workers & Pages → tu proyecto → Settings → Builds**:
+**Guía paso a paso (Actions + panel):** [`docs/DEPLOY-CLOUDFLARE.md`](docs/DEPLOY-CLOUDFLARE.md)
 
-| Campo | Valor |
-|--------|--------|
-| Framework preset | **None** |
-| Build command | `npm run build` |
-| Build output directory | **`out`** |
-| Node.js version | **20** o **22** |
-
-Variables de entorno (Production): `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_WHATSAPP_NUMBER`.
-
-Redirect `/mayorista` → `/proveeduria`: [`public/_redirects`](public/_redirects).
+Resumen: preset **Next.js (Static HTML Export)** o **None**, build `npm run build`, salida **`out`**, Node **20**.
 
 ### Vercel
 
