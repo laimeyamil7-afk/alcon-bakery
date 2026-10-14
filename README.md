@@ -45,11 +45,11 @@ Imágenes: carpeta [`public/images/`](public/images/) (crear al sumar fotos).
 
 ### Cloudflare Pages (recomendado para este repo)
 
-Export estático → carpeta **`out/`** (ver [`wrangler.jsonc`](wrangler.jsonc)).
+Export estático → carpeta **`out/`**.
 
-**Guía paso a paso (Actions + panel):** [`docs/DEPLOY-CLOUDFLARE.md`](docs/DEPLOY-CLOUDFLARE.md)
+**Guía Cloudflare (build + error wrangler):** [`docs/DEPLOY-CLOUDFLARE.md`](docs/DEPLOY-CLOUDFLARE.md)
 
-Resumen: preset **Next.js (Static HTML Export)** o **None**, build `npm run build`, salida **`out`**, Node **20**.
+Resumen: build `npm run build`, salida **`out`**, **sin** deploy command `wrangler deploy`.
 
 ### Vercel
 
