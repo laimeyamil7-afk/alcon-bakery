@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "alcon-bakery",
+  "compatibility_date": "2026-10-13",
+  "assets": {
+    "directory": "./out"
+  }
+}
